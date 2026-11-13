@@ -213,10 +213,16 @@ class CircularApiData:
             old_temp_set = self.temperature_set
             old_power = self.power_set
 
-            self._decode_temperature_read()
-            self._decode_temperature_set()
-            self._decode_power_set()
-
+            for decode in (
+                self._decode_temperature_read,
+                self._decode_temperature_set,
+                self._decode_power_set,
+            ):
+                try:
+                    decode()
+                except WinetAPIError as e:
+                    LOGGER.warning("Lecture impossible : %s", e)
+            
             # Log significant changes
             if abs(self.temperature_read - old_temp_read) > temp_threshold:
                 LOGGER.debug(
@@ -278,7 +284,7 @@ class CircularApiData:
     def _decode_temperature_read(self) -> None:
         """Update Temperature read register."""
         param = self._get_register_value(WinetRegister.TEMPERATURE_PROBE)
-        self.temperature_read = param
+        self.temperature_read = param * 0.5
 
     def _decode_temperature_set(self) -> None:
         """Update Temperature set register."""
