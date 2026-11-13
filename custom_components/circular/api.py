@@ -309,7 +309,11 @@ class CircularApiData:
     @property
     def is_heating(self) -> bool:
         """Is heating ?."""
-        return self.status in [CircularDeviceStatus.WORK]
+        return self.status in [
+            CircularDeviceStatus.STABLE_FLAME,
+            CircularDeviceStatus.WORK,
+            CircularDeviceStatus.MODULA,
+        ]
 
     @property
     def is_ecomode_stop(self) -> bool:
