@@ -82,6 +82,9 @@
             "temperature_read": {
                 "name": "Température lue"
             },
+            "water_temperature": {
+                "name": "Température eau"
+            },
             "status": {
                 "name": "Statut"
             },
