@@ -62,6 +62,15 @@ Circular_SENSORS: tuple[CircularSensorEntityDescription, ...] = (
         value_fn=lambda data: data.temperature_read,
     ),
     CircularSensorEntityDescription(
+        key="water_temperature",
+        translation_key="water_temperature",
+        name="Water Temperature",
+        state_class=SensorStateClass.MEASUREMENT,
+        device_class=SensorDeviceClass.TEMPERATURE,
+        native_unit_of_measurement=UnitOfTemperature.CELSIUS,
+        value_fn=lambda data: data.water_temperature,
+    ),
+    CircularSensorEntityDescription(
         key="status",
         translation_key="status",
         name="Status",
