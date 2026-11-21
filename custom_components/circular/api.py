@@ -142,6 +142,7 @@ class CircularApiData:
         self.status = CircularDeviceStatus.UNKNOWN
         self.alarms = []
         self.temperature_read = 0.0
+        self.water_temperature = 0.0
         self.temperature_set = 0.0
         self.power_set = 0
         self.fan_speed = 0
@@ -217,6 +218,7 @@ class CircularApiData:
                 self._decode_temperature_read,
                 self._decode_temperature_set,
                 self._decode_power_set,
+                self._decode_water_temperature,
             ):
                 try:
                     decode()
@@ -291,6 +293,12 @@ class CircularApiData:
         param = self._get_register_value(WinetRegister.TEMPERATURE_SET)
         self.temperature_set = param
 
+    def _decode_water_temperature(self) -> None:
+        """Température de l'eau du circuit (module ETNA Type M)."""
+        self.water_temperature = self._get_register_value(
+        WinetRegister.WATER_TEMPERATURE
+    )
+        
     def _decode_power_set(self) -> None:
         """Power set."""
         self.power_set = self._get_register_value(WinetRegister.POWER_SET)
