@@ -68,18 +68,19 @@ class CircularDeviceStatus(Enum):
     def get_message(self) -> str:
         """Get a message associated with the enum."""
         messages = {
-            "OFF": "Off",
-            "WAIT_FOR_FLAME": "Waiting flame",
-            "POWER_ON": "Power on",
-            "UNKNOWN_1": "Unknown",
-            "STABLE_FLAME": "Stable Flame",
-            "WORK": "Working",
-            "BRAZIER_CLEANING": "Brazier cleaning",
-            "FINAL_CLEANING": "Final cleaning",
-            "ECO_STOP": "Eco_Stop",
-            "ALARM": "Alarm",
-            "MODULA": "Modula",
-            "UNKNOWN": "Unknown",
+            "OFF": "Arrêt",
+            "WAIT_FOR_FLAME": "Allumage",
+            "POWER_ON": "Chargement pellets",
+            "UNKNOWN_1": "Allumage flamme",
+            "STABLE_FLAME": "Travail",
+            "WORK": "Nettoyage brasier",
+            "BRAZIER_CLEANING": "Nettoyage final",
+            "FINAL_CLEANING": "Veille",
+            "ECO_STOP": "Alarme manque pellets",
+            "MODULA": "Alarme échec allumage",
+            "UNKNOWN_2": "Alarme",
+            "ALARM": "Alarme",
+            "UNKNOWN": "Inconnu",
         }
         return messages.get(self.name, f"Unknown status {self.name}")
 
