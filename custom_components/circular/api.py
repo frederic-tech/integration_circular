@@ -321,7 +321,6 @@ class CircularApiData:
         return self.status in [
             CircularDeviceStatus.STABLE_FLAME,
             CircularDeviceStatus.WORK,
-            CircularDeviceStatus.MODULA,
         ]
 
     @property
